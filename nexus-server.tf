@@ -18,7 +18,7 @@ resource "aws_instance" "nexus-server" {   # we are creating a new instance for 
     instance_type = "t3.medium"     # This is the type of the instance we are creating
     subnet_id = aws_subnet.our-public-subnet.id   # this is the id of the subnet we are using to launch the instance
     user_data = file("./nexus-server.sh")  # this is the script that will be executed during the creation of the instance
-    key_name = "terraform" # this is the key name that we have created in console
+    key_name = "mykeypair" # this is the key name that we have created in console
     # iam_instance_profile = aws_iam_instance_profile.our-instance-profile.name
     security_groups = [aws_security_group.our-security-group-for-nexus.id] # this is security grp in which we have openend ports
     root_block_device {
@@ -28,4 +28,5 @@ resource "aws_instance" "nexus-server" {   # we are creating a new instance for 
     tags = {
         Name = "nexus-server"  # this will provide name to instance 
     }
+
 }
